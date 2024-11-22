@@ -13,4 +13,9 @@ public class Startandquit : MonoBehaviour
     {
         SceneManager.LoadScene("Kuru Kuru Kururin");
     }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }
