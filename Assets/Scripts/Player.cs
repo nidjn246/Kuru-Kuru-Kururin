@@ -6,13 +6,16 @@ public class Player : MonoBehaviour
 
     [SerializeField] float speed;
     [SerializeField] float rotationSpeed;
-     HP health;
+
+    HP health;
+    private AudioSource audioSource;
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
 
         //get the HP script
         health = FindObjectOfType<HP>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -22,6 +25,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         //rotate the rigidbody to the right
         m_Rigidbody.rotation += rotationSpeed;
 
@@ -53,6 +57,13 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Call this function when the player hits the wall
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+
+        m_Rigidbody.linearVelocity = m_Rigidbody.linearVelocity * -1;
+
         health.RemoveHealth();
      }
 }

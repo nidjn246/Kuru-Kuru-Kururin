@@ -9,6 +9,7 @@ public class HP : MonoBehaviour
     {
         //set hp to 3
         Hp = 3;
+
     }
 
     public void RemoveHealth()
