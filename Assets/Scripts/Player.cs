@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -56,14 +57,20 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Call this function when the player hits the wall
-        if (audioSource != null)
-        {
-            audioSource.Play();
-        }
+        
+            //Call this function when the player hits the wall
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
 
-        m_Rigidbody.linearVelocity = m_Rigidbody.linearVelocity * -1;
+            m_Rigidbody.linearVelocity = m_Rigidbody.linearVelocity * -1;
 
-        health.RemoveHealth();
-     }
+            health.RemoveHealth();
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        health.Hp = 3;
+    }
 }

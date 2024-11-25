@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 241f0a01c70cb584aae4f148fea1265c
   - enabled: 1
-    path: Assets/Scenes/Kuru Kuru Kururin.unity
+    path: Assets/Scenes/Level Selector.unity
+    guid: 9d0083561d2249649bd758082f96aa51
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 2.unity
+    guid: e96cfc8bba25c104d957955d4c477630
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 3.unity
+    guid: e9582de0db2bd0249aed9604ea2ee83c
   - enabled: 1
     path: Assets/Scenes/Game Over.unity
     guid: 957e0e40c15921944b39fb94eb02a5d7

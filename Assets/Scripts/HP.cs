@@ -33,15 +33,27 @@ public class HP : MonoBehaviour
         {
             Heartsobjects[0].SetActive(false);
         }
+        else
+        {
+            Heartsobjects[0].SetActive(true);
+        }
 
         if (Hp < 2)
         {
             Heartsobjects[1].SetActive(false);
         }
+        else
+        {
+            Heartsobjects[1].SetActive(true);
+        }
 
         if (Hp < 3)
         {
             Heartsobjects[2].SetActive(false);
+        }
+        else
+        {
+            Heartsobjects[2].SetActive(true);
         }
     }
 }
