@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] float speed;
     [SerializeField] float rotationSpeed;
+    [SerializeField] float bounciness = 20f;
 
     HP health;
     private AudioSource audioSource;
@@ -64,7 +65,11 @@ public class Player : MonoBehaviour
                 audioSource.Play();
             }
 
-            m_Rigidbody.linearVelocity = m_Rigidbody.linearVelocity * -1;
+            ContactPoint2D cp = collision.GetContact(0);
+
+            Vector2 dir = cp.normal;
+
+            m_Rigidbody.linearVelocity = dir * bounciness;//(m_Rigidbody.linearVelocity * 10f) * -1;
 
             health.RemoveHealth();
         

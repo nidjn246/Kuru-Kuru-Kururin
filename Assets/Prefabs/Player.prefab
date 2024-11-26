@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 24
   rotationSpeed: -1.5
+  bounciness: 10
 --- !u!82 &2437189566551364681
 AudioSource:
   m_ObjectHideFlags: 0
