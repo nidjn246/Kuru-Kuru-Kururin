@@ -11,12 +11,13 @@ public class Player : MonoBehaviour
 
     HP health;
     private AudioSource audioSource;
+
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
 
         //get the HP script
-        health = FindObjectOfType<HP>();
+        health = FindFirstObjectByType<HP>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -31,29 +32,13 @@ public class Player : MonoBehaviour
         //rotate the rigidbody to the right
         m_Rigidbody.rotation += rotationSpeed;
 
-        //when the key D is pressed go to the right
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            m_Rigidbody.AddForce(new Vector2(speed, 0), ForceMode2D.Force);
-        }
+        Vector2 currentVelocity = m_Rigidbody.linearVelocity;
+        currentVelocity += new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
 
-        //when the key W is pressed go up
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            m_Rigidbody.AddForce(new Vector2(0, speed), ForceMode2D.Force);
-        }
+        currentVelocity.x = Mathf.Clamp(currentVelocity.x, -10f, 10f);
+        currentVelocity.y = Mathf.Clamp(currentVelocity.y, -10f, 10f);
 
-        //when the key A is pressed go to the left
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            m_Rigidbody.AddForce(new Vector2(-speed, 0), ForceMode2D.Force);
-        }
-
-        //when the key S is pressed go down
-        if (Input.GetAxis("Vertical") < 0)
-        {
-            m_Rigidbody.AddForce(new Vector2(0, -speed), ForceMode2D.Force);
-        }
+        m_Rigidbody.linearVelocity = currentVelocity;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

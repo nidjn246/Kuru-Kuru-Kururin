@@ -1,19 +1,27 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BackgroundMusic : MonoBehaviour
 {
-    public static BackgroundMusic bgmusic;
+    private AudioSource bgmusic;
 
     private void Awake ()
-    { 
-        if (bgmusic != null)
+    {
+        bgmusic = GetComponent<AudioSource>();
+        bgmusic.Play();
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "Game Over" || SceneManager.GetActiveScene().name == "Win Screen")
         {
-            Destroy(gameObject);
+            bgmusic.Pause();
         }
-        else
+
+        if (SceneManager.GetActiveScene().name == "Level Selector" || SceneManager.GetActiveScene().name == "Main Menu")
         {
-            bgmusic = this;
+            bgmusic.UnPause();
         }
-        DontDestroyOnLoad(this.gameObject);
     }
 }
