@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    //all the variables that are used in this script
     private Rigidbody2D m_Rigidbody;
 
     [SerializeField] float speed;
@@ -21,23 +22,23 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-       
-    }
-
     private void FixedUpdate()
     {
 
         //rotate the rigidbody to the right
         m_Rigidbody.rotation += rotationSpeed;
 
+        //get the current velocity that is used and put it into the currentvelocity
         Vector2 currentVelocity = m_Rigidbody.linearVelocity;
+
+        //if a movement key is pressed make the linearvelocity go up
         currentVelocity += new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
 
+        //keep the speed/drag in between -10 and 10
         currentVelocity.x = Mathf.Clamp(currentVelocity.x, -10f, 10f);
         currentVelocity.y = Mathf.Clamp(currentVelocity.y, -10f, 10f);
 
+        //put the velocity into the currentVelocity variable
         m_Rigidbody.linearVelocity = currentVelocity;
     }
 
@@ -50,15 +51,21 @@ public class Player : MonoBehaviour
                 audioSource.Play();
             }
 
+            //get where the contact point is
             ContactPoint2D cp = collision.GetContact(0);
 
+            //get the normal of the contact point
             Vector2 dir = cp.normal;
-
-            m_Rigidbody.linearVelocity = dir * bounciness;//(m_Rigidbody.linearVelocity * 10f) * -1;
-
+            
+            //return the force so you bounce back
+            m_Rigidbody.linearVelocity = dir * bounciness;
+            
+            //remove 1 heart when you collide with the wall
             health.RemoveHealth();
         
     }
+
+    //when you hit a trigger collider reset the Hp
     private void OnTriggerEnter2D(Collider2D collision)
     {
         health.Hp = 3;

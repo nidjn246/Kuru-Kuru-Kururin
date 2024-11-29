@@ -21,14 +21,17 @@ public class Startandquit : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
+    //start level 1
     public void Level1Start()
     {
         SceneManager.LoadScene("Level 1");
     }
+    //start level 2
     public void Level2Start()
     {
         SceneManager.LoadScene("Level 2");
     }
+    //start level 3
     public void Level3Start()
     {
         SceneManager.LoadScene("Level 3");

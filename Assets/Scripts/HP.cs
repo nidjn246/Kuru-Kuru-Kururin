@@ -29,6 +29,7 @@ public class HP : MonoBehaviour
 
     private void Update()
     {
+        //if Hp is lower then ... deactivate the gameobject/icon of the heart
         if (Hp < 1)
         {
             Heartsobjects[0].SetActive(false);
